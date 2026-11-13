@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSI Sport - Network Clubs FVG</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Permanent+Marker&family=Russo+One&family=Bangers&family=Fredoka+One&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --celestino: #B8D4E8;
+            --marroncino: #C9B8A3;
+            --rosa: #E8C4D4;
+            --nero: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: var(--celestino);
+            color: var(--nero);
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Decorazioni sottili */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(232, 196, 212, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 184, 163, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0;
+            background: linear-gradient(135deg, 
+                rgba(232, 196, 212, 0.95) 0%,
+                rgba(184, 212, 232, 0.95) 50%,
+                rgba(201, 184, 163, 0.95) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+            animation: navSlideDown 0.8s ease-out;
+        }
+
+        @keyframes navSlideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 40px;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.15));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.08);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, 
+                var(--nero) 0%,
+                #2a2a2a 30%,
+                var(--nero) 60%,
+                #2a2a2a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+            position: relative;
+            line-height: 1;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--rosa) 0%,
+                var(--celestino) 50%,
+                var(--marroncino) 100%);
+        }
+
+        .subtitle {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 0.9rem;
+            color: var(--nero);
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            font-family: 'Russo One', sans-serif;
+            font-size: 0.9rem;
+            color: var(--nero);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 80%;
+            height: 2px;
+            background: var(--nero);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .nav-link:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .cta-button {
+            background: var(--nero);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: #2a2a2a;
+        }
+
+        .cta-button::before {
+            display: none;
+        }
+
+        .main-content {
+            padding-top: 140px;
+        }
+
+        /* Sezione principale */
+        .main-content {
+            display: grid;
+            gap: 40px;
+            padding-bottom: 80px;
+            padding-top: 180px;
+        }
+
+        /* Blocco contenuto */
+        .content-block {
+            background: white;
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            margin-top: 30px;
+            overflow: visible;
+        }
+
+        .content-block.placeholder {
+            background: white;
+            border: 2px dashed #ddd;
+            color: #999;
+            text-align: center;
+            font-style: italic;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 0;
+        }
+
+        .block-title {
+            font-family: 'Righteous', cursive;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 10px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg) translateY(-30px);
+            background: linear-gradient(135deg, var(--rosa) 0%, var(--marroncino) 100%);
+            padding: 20px 60px;
+            border-radius: 15px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 10;
+            border: 4px solid var(--nero);
+        }
+
+        .block-title::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            background: var(--nero);
+            border-radius: 17px;
+            z-index: -1;
+        }
+
+        .block-title::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        /* Sezione Team */
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: nowrap;
+        }
+
+        .team-member {
+            flex: 0 0 280px;
+            text-align: center;
+        }
+
+        .team-member:nth-child(1) {
+            transform: rotate(-5deg);
+            margin-top: 15px;
+            margin-left: -10px;
+        }
+
+        .team-member:nth-child(2) {
+            transform: rotate(6deg);
+            margin-top: -10px;
+            margin-right: 15px;
+        }
+
+        .team-member:nth-child(3) {
+            transform: rotate(-4deg);
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+
+        .member-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid var(--rosa);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--nero);
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+            transform: rotate(-2deg);
+            display: inline-block;
+        }
+
+        .member-socials {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .social-link {
+            padding: 10px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .social-link.tiktok {
+            background: #000;
+            color: white;
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Sezione Clubs */
+        .clubs-wrapper {
+            background-image: url('image/cartone.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top;
+            border-radius: 0;
+            padding: 0px 0 250px 0;
+            position: relative;
+            width: 100%;
+            min-height: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            overflow: visible;
+            box-shadow: none;
+            border: none;
+            background-color: transparent;
+        }
+
+        .clubs-wrapper::before {
+            display: none;
+        }
+
+        .clubs-wrapper::after {
+            display: none;
+        }
+
+        .clubs-wrapper .block-title {
+            background: linear-gradient(135deg, var(--celestino) 0%, var(--rosa) 100%);
+            position: relative;
+            z-index: 10;
+        }
+
+        .clubs-title {
+            background: linear-gradient(135deg, var(--celestino) 0%, var(--rosa) 100%);
+            position: relative;
+            z-index: 10;
+            margin-bottom: -30px;
+        }
+
+        .clubs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 10px 20px;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .club-item {
+            text-align: center;
+            flex: 0 1 150px;
+        }
+
+        .club-item:nth-child(1) {
+            margin-top: 0px;
+            transform: rotate(-7deg);
+        }
+
+        .club-item:nth-child(2) {
+            margin-top: 15px;
+            transform: rotate(8deg);
+        }
+
+        .club-item:nth-child(3) {
+            margin-top: 30px;
+            transform: rotate(-5deg);
+        }
+
+        .club-item:nth-child(4) {
+            margin-top: 5px;
+            transform: rotate(9deg);
+        }
+
+        .club-item:nth-child(5) {
+            margin-top: 15px;
+            transform: rotate(-6deg);
+        }
+
+        .club-logo-wrapper {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .club-logo-wrapper.placeholder {
+            background: var(--nero);
+        }
+
+        .club-logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .club-name {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.7rem;
+            font-weight: 400;
+            color: var(--nero);
+            margin-bottom: 12px;
+            letter-spacing: 0px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .club-name:hover {
+            transform: scale(1.05);
+        }
+
+        .club-location {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .club-link {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--nero);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .club-link:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background: #2a2a2a;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--rosa);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-family: 'Righteous', cursive;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--nero);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-description {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--nero);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .footer-link:hover {
+            opacity: 0.6;
+        }
+
+        .footer-copyright {
+            font-size: 0.95rem;
+            color: #555;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+
+            .logo-section {
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+            }
+
+            .nav-menu {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+
+            .main-content {
+                padding-top: 180px;
+            }
+
+            .team-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .team-member {
+                flex: 0 1 auto;
+            }
+
+            .team-member:nth-child(1),
+            .team-member:nth-child(2),
+            .team-member:nth-child(3) {
+                margin: 0;
+                transform: rotate(0deg);
+            }
+
+            .clubs-wrapper {
+                min-height: auto;
+                padding: 20px 0 50px 0;
+                background-image: none;
+                background: white;
+                width: 100%;
+                border-radius: 12px;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            .club-item:nth-child(1) { transform: rotate(-5deg); margin-top: 5px; }
+            .club-item:nth-child(2) { transform: rotate(6deg); margin-top: 10px; }
+            .club-item:nth-child(3) { transform: rotate(-4deg); margin-top: 0px; }
+            .club-item:nth-child(4) { transform: rotate(7deg); margin-top: 8px; }
+            .club-item:nth-child(5) { transform: rotate(-3deg); margin-top: 5px; }
+
+            .clubs-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 10px 5px;
+                max-width: 100%;
+                padding: 0 10px;
+            }
+
+            .club-item {
+                flex: 0 1 85px;
+                width: auto;
+            }
+
+            .club-item:nth-child(1) { transform: rotate(-5deg); margin-top: 5px; }
+            .club-item:nth-child(2) { transform: rotate(6deg); margin-top: 10px; }
+            .club-item:nth-child(3) { transform: rotate(-4deg); margin-top: 0px; }
+            .club-item:nth-child(4) { transform: rotate(7deg); margin-top: 8px; }
+            .club-item:nth-child(5) { transform: rotate(-3deg); margin-top: 5px; }
+
+            .club-name {
+                font-size: 0.9rem;
+            }
+
+            .club-location {
+                font-size: 0.65rem;
+            }
+
+            .club-link {
+                font-size: 0.65rem;
+                padding: 5px 10px;
+            }
+
+            .block-title {
+                font-size: 1.8rem;
+                padding: 15px 30px;
+                transform: translateX(-50%) rotate(-2deg) translateY(-20px);
+            }
+        }
+
+            .content-block {
+                padding: 35px 25px;
+            }
+
+            .clubs-wrapper {
+                padding: 35px 25px;
+            }
+
+            .block-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+                padding: 15px 40px;
+                transform: translateX(-50%) rotate(-3deg) translateY(-50px);
+            }
+
+            .footer-title {
+                font-size: 2rem;
+            }
+
+            .team-grid {
+                gap: 40px 30px;
+            }
+
+            .team-member {
+                flex: 0 1 100%;
+            }
+
+            .clubs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 40px 30px;
+            }
+
+            .member-photo,
+            .club-logo-wrapper {
+                width: 120px;
+                height: 120px;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+                filter: drop-shadow(1px 1px 0px var(--rosa))
+                        drop-shadow(2px 2px 0px rgba(184, 212, 232, 0.8));
+            }
+
+            .subtitle {
+                font-size: 0.6rem;
+                letter-spacing: 1px;
+                padding: 3px 10px;
+            }
+
+            .main-content {
+                padding-top: 120px;
+            }
+
+            .block-title {
+                font-size: 1.6rem;
+                padding: 12px 30px;
+                transform: translateX(-50%) rotate(-3deg) translateY(-40px);
+            }
+
+            .clubs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .footer-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="nav-container">
+                <div class="logo-section">
+                    <img src="image/GSI_LOGO.png" alt="GSI Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>GSI SPORT NETWORK</h1>
+                        <p class="subtitle">Clubs Friuli Venezia Giulia</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#team" class="nav-link">Noi</a></li>
+                        <li><a href="#clubs" class="nav-link">Clubs</a></li>
+                        <li><a href="#" class="nav-link cta-button">Contatti</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Placeholder intro -->
+            <div class="content-block placeholder">
+                Spazio per testo introduttivo o descrizione del network
+            </div>
+
+            <!-- Sezione Team -->
+            <div class="content-block" id="team">
+                <h2 class="block-title">TUTTO SU DI NOI</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="image/jarod.jpg" alt="Jarod">
+                        </div>
+                        <h3 class="member-name">Jarod</h3>
+                        <div class="member-socials">
+                            <a href="https://www.tiktok.com/@blaz3.06" target="_blank" class="social-link tiktok">TikTok</a>
+                            <a href="https://www.instagram.com/jarod.sisinni06/" target="_blank" class="social-link instagram">Instagram</a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="image/martina.jpeg" alt="Martina">
+                        </div>
+                        <h3 class="member-name">Martina</h3>
+                        <div class="member-socials">
+                            <a href="https://www.tiktok.com/@0nly.m4rty" target="_blank" class="social-link tiktok">TikTok</a>
+                            <a href="https://www.instagram.com/lamarti.official/" target="_blank" class="social-link instagram">Instagram</a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="image/martina_e_jarod.jpeg" alt="Martina e Jarod">
+                        </div>
+                        <h3 class="member-name">L'Angolo dei Bey</h3>
+                        <div class="member-socials">
+                            <a href="https://www.tiktok.com/@langolodeibey" target="_blank" class="social-link tiktok">TikTok</a>
+                            <a href="https://www.instagram.com/langolodeibey/" target="_blank" class="social-link instagram">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder mid -->
+            <div class="content-block placeholder">
+                Spazio per informazioni aggiuntive sul team o mission
+            </div>
+
+            <!-- Sezione Clubs -->
+            <div class="clubs-wrapper" id="clubs">
+                <h2 class="block-title">I Nostri Clubs</h2>
+                <div class="clubs-grid">
+                    <div class="club-item">
+                        <div class="club-logo-wrapper placeholder"></div>
+                        <h3 class="club-name">Border Bladers</h3>
+                        <p class="club-location">Gorizia</p>
+                        <a href="https://www.instagram.com/borderbladers/" target="_blank" class="club-link">Instagram</a>
+                    </div>
+
+                    <div class="club-item">
+                        <div class="club-logo-wrapper">
+                            <img src="image/green_lizard.svg" alt="Green Lizard">
+                        </div>
+                        <h3 class="club-name">Green Lizard</h3>
+                        <p class="club-location">Pordenone</p>
+                        <a href="https://www.instagram.com/greenlizards.bx/" target="_blank" class="club-link">Instagram</a>
+                    </div>
+
+                    <div class="club-item">
+                        <div class="club-logo-wrapper">
+                            <img src="image/udine.jpg" alt="BeyBlês">
+                        </div>
+                        <h3 class="club-name">BeyBlês</h3>
+                        <p class="club-location">Udine</p>
+                        <a href="https://www.instagram.com/beybles.beyblade.fvg/" target="_blank" class="club-link">Instagram</a>
+                    </div>
+
+                    <div class="club-item">
+                        <div class="club-logo-wrapper">
+                            <img src="image/madrax.png" alt="Madrax">
+                        </div>
+                        <h3 class="club-name">Madrax</h3>
+                        <p class="club-location">Bassa Friuli</p>
+                        <a href="https://www.instagram.com/madraxofficial/" target="_blank" class="club-link">Instagram</a>
+                    </div>
+
+                    <div class="club-item">
+                        <div class="club-logo-wrapper">
+                            <img src="image/ts_cocals.webp" alt="TS Cocals">
+                        </div>
+                        <h3 class="club-name">TS Cocals</h3>
+                        <p class="club-location">Trieste</p>
+                        <a href="https://www.instagram.com/tscocals_beyblade/" target="_blank" class="club-link">Instagram</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder finale -->
+            <div class="content-block placeholder">
+                Spazio per call-to-action o informazioni sui clubs
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3 class="footer-title">GSI Sport Network</h3>
+            <p class="footer-description">
+                La rete di clubs sportivi del Friuli Venezia Giulia. Seguici sui nostri canali social per rimanere aggiornato su eventi, tornei e novità.
+            </p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Contatti</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Termini</a>
+                <a href="#" class="footer-link">Chi Siamo</a>
+            </div>
+            <div class="footer-copyright">
+                © 2026 GSI Sport Network - Friuli Venezia Giulia
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
