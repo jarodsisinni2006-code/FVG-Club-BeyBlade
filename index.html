@@ -558,11 +558,41 @@
             text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
         }
 
-        .footer-description {
+        .footer-contact-number {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact-number a {
+            color: var(--nero);
+            text-decoration: none;
+        }
+
+        .footer-contact-number a:hover {
+            text-decoration: underline;
+        }
             font-size: 1.05rem;
             color: #333;
             line-height: 1.8;
             margin-bottom: 25px;
+        }
+
+        .footer-link-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .footer-link-phone {
+            font-size: 0.8rem;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .footer-link-phone:hover {
+            text-decoration: underline;
         }
 
         .footer-links {
@@ -655,11 +685,11 @@
                 box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             }
 
-            .club-item:nth-child(1) { transform: rotate(-5deg); margin-top: 5px; }
-            .club-item:nth-child(2) { transform: rotate(6deg); margin-top: 10px; }
-            .club-item:nth-child(3) { transform: rotate(-4deg); margin-top: 0px; }
-            .club-item:nth-child(4) { transform: rotate(7deg); margin-top: 8px; }
-            .club-item:nth-child(5) { transform: rotate(-3deg); margin-top: 5px; }
+            .club-item:nth-child(1) { transform: rotate(-7deg); margin-top: 12px; }
+            .club-item:nth-child(2) { transform: rotate(4deg); margin-top: 3px; }
+            .club-item:nth-child(3) { transform: rotate(-2deg); margin-top: 18px; }
+            .club-item:nth-child(4) { transform: rotate(9deg); margin-top: 5px; }
+            .club-item:nth-child(5) { transform: rotate(-5deg); margin-top: 9px; }
 
             .clubs-grid {
                 flex-direction: row;
@@ -676,14 +706,8 @@
                 width: auto;
             }
 
-            .club-item:nth-child(1) { transform: rotate(-5deg); margin-top: 5px; }
-            .club-item:nth-child(2) { transform: rotate(6deg); margin-top: 10px; }
-            .club-item:nth-child(3) { transform: rotate(-4deg); margin-top: 0px; }
-            .club-item:nth-child(4) { transform: rotate(7deg); margin-top: 8px; }
-            .club-item:nth-child(5) { transform: rotate(-3deg); margin-top: 5px; }
-
             .club-name {
-                font-size: 0.9rem;
+                font-size: 1.3rem;
             }
 
             .club-location {
@@ -793,7 +817,7 @@
                     <ul class="nav-menu">
                         <li><a href="#team" class="nav-link">Noi</a></li>
                         <li><a href="#clubs" class="nav-link">Clubs</a></li>
-                        <li><a href="#" class="nav-link cta-button">Contatti</a></li>
+                        <li><a href="#contatti" class="nav-link cta-button">Contatti</a></li>
                     </ul>
                 </nav>
             </div>
@@ -802,7 +826,11 @@
         <div class="main-content">
             <!-- Placeholder intro -->
             <div class="content-block placeholder">
-                Spazio per testo introduttivo o descrizione del network
+                Il punto di riferimento per il Beyblade in Friuli Venezia Giulia!
+
+GSI Sport Network riunisce i club e le community di Beyblade della nostra regione, con l'obiettivo di far crescere questo sport, creare nuove connessioni e portare sempre più persone a condividere la passione per le sfide in arena.
+
+Dai primi lanci ai tornei competitivi, c'è spazio per tutti. La nostra forza è la community!
             </div>
 
             <!-- Sezione Team -->
@@ -846,7 +874,13 @@
 
             <!-- Placeholder mid -->
             <div class="content-block placeholder">
-                Spazio per informazioni aggiuntive sul team o mission
+                Dietro GSI Sport Network ci sono persone unite dalla stessa passione: il Beyblade.
+
+Siamo una realtà nata per mettere in contatto giocatori, organizzatori e community del Friuli Venezia Giulia, dando visibilità ai club locali e contribuendo alla crescita del movimento nella regione.
+
+Attraverso contenuti social, collaborazioni ed eventi, vogliamo rendere il Beyblade sempre più conosciuto e accessibile a tutti.
+
+**La nostra missione? Unire la community, un lancio alla volta!**
             </div>
 
             <!-- Sezione Clubs -->
@@ -900,19 +934,30 @@
 
             <!-- Placeholder finale -->
             <div class="content-block placeholder">
-                Spazio per call-to-action o informazioni sui clubs
+            Anche tu fai parte della community?
+
+Hai un club di Beyblade in Friuli Venezia Giulia oppure vuoi iniziare a organizzare incontri e tornei nella tua zona?
+
+GSI Sport Network è aperto a nuove collaborazioni e a tutti i gruppi che condividono la passione per questo mondo.
+
+Unisciti alla rete, fai conoscere il tuo club e contribuisci a far crescere la community regionale!
+
+**Più club, più sfide, un'unica passione!**
             </div>
         </div>
     </div>
 
-    <footer>
+    <footer id="contatti">
         <div class="footer-content">
             <h3 class="footer-title">GSI Sport Network</h3>
             <p class="footer-description">
                 La rete di clubs sportivi del Friuli Venezia Giulia. Seguici sui nostri canali social per rimanere aggiornato su eventi, tornei e novità.
             </p>
             <div class="footer-links">
-                <a href="#" class="footer-link">Contatti</a>
+                <div class="footer-link-group">
+                    <a href="#" class="footer-link">Contatti</a>
+                    <a href="tel:+393745640800" class="footer-link-phone">+39 374 564 0800</a>
+                </div>
                 <a href="#" class="footer-link">Privacy</a>
                 <a href="#" class="footer-link">Termini</a>
                 <a href="#" class="footer-link">Chi Siamo</a>
